@@ -19,7 +19,32 @@ class List extends Component {
     this.fetchTodos();
   }
 
-  fetchTodos() {}
+  fetchTodos(){
+    // Make a request for a user with a given ID
+    //axios is an easier way to do ajax, using promise style
+    axios
+    .get('/api/todoList')
+    .then(function (response) {
+      console.log(data);
+      this.setStat({ todos: data });
+    })
+    .catch(err => console.log(err))
+    });
+  }
+    
+    // Optionally the request above could also be done as
+    axios.get('/user', {
+      params: {
+        ID: 12345
+      }
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  ) {}
 
   handleInput(e) {
     this.setState({
@@ -30,9 +55,35 @@ class List extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { todo, todos, listName } = this.state;
+    axios
+      .get('/api/todoList')
+      .then(() => {
+        this.fetchTodos();
+        this.setStat{{
+          todo: ''
+        }}
+      })
+      .catch(err => console.log(err))
+      });
+
   }
 
-  deleteTodo(index) {}
+  deleteTodo(index) {
+    axios
+      .delete('/api/todoList', {
+        params: {index, listName: this.state.listName}
+      })
+      .then(this.fetchTodos)
+      .catch(err => console.log(err))
+        this.fetchTodos();
+        this.setStat{{
+          todo: ''
+        }}
+      })
+      .catch(err => console.log(err))
+      });
+
+  }
 
   render() {
     return (
